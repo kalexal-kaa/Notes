@@ -288,7 +288,7 @@ public class Controller implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        String key = "satKLwrtZ157";
+        String key = " ";
         String parentPath=null;
         try {
             parentPath= URLDecoder.decode(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent(), "UTF-8");
