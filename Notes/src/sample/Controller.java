@@ -59,11 +59,12 @@ public class Controller implements Initializable {
         dialog.setHeaderText("Введите название новой группы");
         dialog.setContentText("Название группы:");
         final Optional<String> name = dialog.showAndWait();
-        if (name.isPresent() && !"".equals(name.get())) {
+        if (name.isPresent() && !isEmpty(name.get())) {
             File file = new File(userDirectoryPath+separator+name.get());
             if (file.exists()) {
                 alertWindow("Группа с таким названием уже имеется\nВыберите другое название");
                 add1();
+                return;
             }
             file.mkdir();
             if (file.exists()) {
@@ -76,7 +77,6 @@ public class Controller implements Initializable {
                 add1();
             }
         }
-
     }
     @FXML
     private void add2() throws IOException {
@@ -94,11 +94,13 @@ public class Controller implements Initializable {
             if (incorrectSymbols(name.get())){
                 alertWindow("Запись не будет создана:\nОбнаружены недопустимые символы в названии записи");
                 add2();
+                return;
             }
             File file = new File(userDirectoryPath+separator+l+separator+name.get());
             if (file.exists()) {
                 alertWindow("Запись не будет создана:\nЗапись с таким названием уже имеется");
                 add2();
+                return;
             }
             if (file.createNewFile()){
                 showNotes(file.getParent());
@@ -288,7 +290,7 @@ public class Controller implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        String key = " ";
+        String key = "satKLwrtZ157";
         String parentPath=null;
         try {
             parentPath= URLDecoder.decode(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent(), "UTF-8");
